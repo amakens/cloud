@@ -27,7 +27,7 @@ public class App {
     	AWSCredentials credentials = new BasicAWSCredentials("AKIAIVUOSJQF43NYWKRA", "mQzi5urcgCcaT+XbURLi1tefHHCsvcS1BWKi3Hn/");
     	AmazonS3 s3 = new AmazonS3Client(credentials);
     	
-//    	s3.setEndpoint("sa-east-1"); //opcional - us-west-2
+//    	s3.setEndpoint("sa-east-1");//opcional - us-west-2
     	
     	//Cria um Bucket
     	
