@@ -2,6 +2,8 @@ package com.soaexpert;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.util.Calendar;
+import java.util.Date;
 
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3Client;
@@ -22,7 +24,7 @@ public class App {
     public static void main( String[] args ) {
     	AmazonS3 s3 = new AmazonS3Client();
     	
-    	s3.setEndpoint("sa-east-1");
+//    	s3.setEndpoint("sa-east-1"); //opcional
     	
     	//Cria um Bucket
     	
@@ -43,7 +45,21 @@ public class App {
     	
     	//Ja esta salvo, mas iremos gerar um endereco para exibir - Para tal, o endereco possui uma data de validade. Iremos criar uma valida para 3 meses
     	
+    	Date dataDeVallidade = null;
     	
-        System.out.println( "Hello World!" );
+    	{
+    		Calendar calendar = Calendar.getInstance();
+    		
+    		calendar.add(Calendar.MONTH, 3);
+    		
+    		dataDeVallidade = calendar.getTime();
+    	}
+    	
+    	//Gera o endereco e o exibe
+    	String url = s3.generatePresignedUrl(NOME_DO_BUCKET, NOME_DO_OBJETO, dataDeVallidade).toExternalForm();
+    	
+    	System.out.println("Por favor, abra o seguinte endereço:");
+    	
+    	System.out.println(url);
     }
 }
