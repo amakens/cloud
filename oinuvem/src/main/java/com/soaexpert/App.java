@@ -5,6 +5,8 @@ import java.io.InputStream;
 import java.util.Calendar;
 import java.util.Date;
 
+import com.amazonaws.auth.AWSCredentialsProvider;
+import com.amazonaws.auth.profile.ProfileCredentialsProvider;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.Bucket;
@@ -22,7 +24,8 @@ public class App {
 	private static final String NOME_DO_BUCKET = "hello-s3-world-makens";
 	
     public static void main( String[] args ) {
-    	AmazonS3 s3 = new AmazonS3Client();
+    	AWSCredentialsProvider credentialsProvider = new ProfileCredentialsProvider();
+    	AmazonS3 s3 = new AmazonS3Client(credentialsProvider);
     	
 //    	s3.setEndpoint("sa-east-1");//opcional - us-west-2
     	
